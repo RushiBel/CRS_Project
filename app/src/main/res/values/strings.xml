@@ -14,4 +14,6 @@
     <string name="quarantine">Quarantine</string>
     <string name="relocation">Relocation</string>
     <string name="profile">Profile</string>
+
+    <string name="git_test">Git test</string>
 </resources>
