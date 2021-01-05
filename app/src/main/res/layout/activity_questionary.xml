@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.orendasoftware.crs.presentation.view_models.home.QuastionaryViewModel" />
+
+        <variable
+            name="selectionListener"
+            type="com.orendasoftware.crs.presentation.view.home.common.SelectionListener" />
+
+        <variable
+            name="selectionType"
+            type="com.orendasoftware.crs.presentation.view.home.common.SelectionTypes" />
+
+        <variable
+            name="nextClickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/survey_add_new_form_three_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:singleLine="true"
+                    android:text="Questionary"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="1. Do you have travel history ? *"
+                    android:textColor="@color/black" />
+
+                <RadioGroup
+                    android:id="@+id/rb_group_travel_history_question_ans_survey_form_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="vertical"
+                    android:checkedButton="@={viewModel.travelHistory}">
+
+                    <RadioButton
+                        android:id="@+id/rb_yes_travel_history_survey_form_three"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{()-> selectionListener.onTravelHistorySelected(selectionType.TRAVEL_YES)}"
+                        android:text="Yes"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_no_travel_history_survey_form_three"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{()-> selectionListener.onTravelHistorySelected(selectionType.NO_HISTORY)}"
+                        android:text="No"/>
+
+                </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/layout_travel_history_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_input_layout_et_country_or_state_survey_form_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_100sdp"
+                        android:hint="Detailed Address of Place *"
+                        android:layout_marginStart="@dimen/_25sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/AppTextField">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_country_or_state_survey_form_three"
+                            android:layout_width="match_parent"
+                            android:inputType="textCapWords"
+                            android:singleLine="false"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:minLines="5"
+                            android:text="@={viewModel.countryCityState}"
+                            android:layout_height="@dimen/_95sdp"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_input_layout_et_date_survey_form_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Date *"
+                        android:layout_marginStart="@dimen/_25sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/AppTextField">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_date_survey_form_three"
+                            android:layout_width="match_parent"
+                            android:inputType="date"
+                            android:singleLine="true"
+                            android:focusable="false"
+                            android:enabled="true"
+                            android:focusableInTouchMode="true"
+                            android:minLines="1"
+                            android:text="@={viewModel.travelDate}"
+                            android:layout_height="wrap_content"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_input_layout_et_transport_survey_form_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Transport *"
+                        android:layout_marginStart="@dimen/_25sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/AppTextField">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_transport_survey_form_three"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:inputType="textCapWords"
+                            android:minLines="1"
+                            android:text="@={viewModel.transportType}"
+                            android:singleLine="true" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="2. Do you have any symptoms ? *"
+                    android:textColor="@color/black" />
+
+                <RadioGroup
+                    android:id="@+id/rb_group_symptoms_question_ans_survey_form_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    android:checkedButton="@={viewModel.symptoms}">
+
+                    <RadioButton
+                        android:id="@+id/rb_yes_symptoms_survey_form_three"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{()->selectionListener.onSymtomOptionSelected(selectionType.HAVE_SYMPTOMS)}"
+                        android:text="Yes"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_no_symptoms_survey_form_three"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{()->selectionListener.onSymtomOptionSelected(selectionType.NO_SYMPTOPMS)}"
+                        android:text="No"/>
+
+                </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/layout_symptom_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkbox_cold_symptoms_ans_survey_form_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:checked="@={viewModel.cold}"
+                            android:text="Cold"/>
+
+                        <CheckBox
+                            android:id="@+id/checkbox_cough_symptoms_ans_survey_form_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:checked="@={viewModel.cough}"
+                            android:text="Cough"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkbox_fever_symptoms_ans_survey_form_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:checked="@={viewModel.fever}"
+                            android:text="Fever"/>
+
+                        <CheckBox
+                            android:id="@+id/checkbox_breathing_diff_symptoms_ans_survey_form_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:checked="@={viewModel.breathing}"
+                            android:text="Breathing difficulty"/>
+
+                    </LinearLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_input_layout_et_other_symptoms_ans_survey_form_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Other"
+                        android:layout_marginStart="@dimen/_25sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        style="@style/AppTextField">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_other_symptoms_ans_survey_form_three"
+                            android:layout_width="match_parent"
+                            android:inputType="textCapWords"
+                            android:singleLine="true"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:minLines="1"
+                            android:text="@={viewModel.otherSymptoms}"
+                            android:layout_height="wrap_content"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:layout_marginStart="@dimen/_25sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Symptoms Severity ? *"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/rb_group_symptoms_severity_survey_form_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:checkedButton="@={viewModel.severity}"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_mild_severity_survey_form_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{()-> selectionListener.onSeveretySelected()}"
+                            android:text="Mild"/>
+
+                        <RadioButton
+                            android:id="@+id/rb_moderate_severity_survey_form_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{()-> selectionListener.onSeveretySelected()}"
+                            android:text="Moderate"/>
+                        <RadioButton
+                            android:id="@+id/rb_severe_severity_survey_form_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{()-> selectionListener.onSeveretySelected()}"
+                            android:text="Severe"/>
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:text="3. Quarantine Type"/>
+
+                <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:id="@+id/spinner_quarantine_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_42sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@color/white"
+                    app:ms_arrow_tint="@color/black"
+                    app:ms_background_color="@color/white"
+                    app:ms_background_selector="@drawable/spinner_background"
+                    card_view:ms_background="@color/white"
+                    card_view:ms_dropdown_height="wrap_content"
+                    android:text="@={viewModel.quarantineType}"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_move_to_hospital_form_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:visibility="gone"
+                    android:text="Move to Hospital"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_input_layout_et_hospital_name_quarantine_form_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Hospital Name *"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    style="@style/AppTextField">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_hospital_name_quarantine_form_three"
+                        android:layout_width="match_parent"
+                        android:inputType="textCapWords"
+                        android:singleLine="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:minLines="1"
+                        android:layout_height="wrap_content"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:weightSum="1">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight=".5"
+                        android:layout_height="match_parent">
+                        <Button
+                            android:id="@+id/btn_back_survey_form_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/button_rectangle_border"
+                            android:gravity="center"
+                            android:padding="@dimen/_5sdp"
+                            android:layout_centerInParent="true"
+                            android:text="Back"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight=".5"
+                        android:layout_height="match_parent">
+                        <Button
+                            android:id="@+id/btn_next_survey_form_three"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/button_rectangle_border"
+                            android:gravity="center"
+                            android:padding="@dimen/_5sdp"
+                            android:layout_centerInParent="true"
+                            android:text="Next"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:onClick="@{nextClickListener}"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>
+

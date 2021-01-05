@@ -12,6 +12,9 @@
         <variable
             name="signInClickListener"
             type="com.orendasoftware.crs.presentation.view.enrollment.SignInClickListener" />
+        <variable
+            name="handler"
+            type="com.orendasoftware.crs.presentation.view.enrollment.LoginHandler"/>
 
     </data>
 
@@ -51,10 +54,12 @@
             android:hint="@string/login_mobile_number">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_user_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
                 android:inputType="number"
+                android:text="@={loginViewModel.userId}"
                 android:maxLength="10"
                 />
 
@@ -76,10 +81,13 @@
             android:hint="@string/login_password">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
                 android:inputType="textPassword"
+                android:text="@={loginViewModel.password}"
+                android:afterTextChanged="@{handler::passwordValidator}"
                 android:maxLength="10"
                 />
 

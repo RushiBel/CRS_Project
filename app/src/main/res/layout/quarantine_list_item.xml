@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="quarantineViewModel"
+            type="com.orendasoftware.crs.presentation.view_models.home.quarantine.QuarantineListItemViewModel" />
+
+        <variable
+            name="listener"
+            type="com.orendasoftware.crs.presentation.view.home.quarantine.QuarantineListItemClickListener" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:onClick="@{()->listener.onItemClick(quarantineViewModel.id)}"
+        android:outlineAmbientShadowColor="@color/lightGrey">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_5sdp">
+
+            <LinearLayout
+                android:id="@+id/layout_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/unineue_bold"
+                    android:textSize="@dimen/_12sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="@{quarantineViewModel.name}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/unineue_regular"
+                    android:textSize="@dimen/_11sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@{quarantineViewModel.mobileNo}"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/button_green"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/unineue"
+                        android:text="@{quarantineViewModel.type}"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/button_blue_light"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/unineue"
+                    android:text="Status : " />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/unineue"
+                    android:text="@{quarantineViewModel.status}"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/unineue_regular"
+                    android:textColor="@color/lightGrey"
+                    android:textSize="@dimen/_10sdp"
+                    android:text="Start Date"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/unineue_regular"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:text="@{quarantineViewModel.startDate}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/unineue_regular"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:textColor="@color/lightGrey"
+                    android:textSize="@dimen/_10sdp"
+                    android:text="End Date"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/unineue_regular"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:text="@{quarantineViewModel.endDate}"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

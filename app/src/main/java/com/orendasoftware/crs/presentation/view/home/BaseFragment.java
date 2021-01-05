@@ -19,7 +19,7 @@ import com.orendasoftware.crs.presentation.view_models.enrollment.BaseViewModel;
 import com.orendasoftware.crs.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BaseFragment extends Fragment implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class BaseFragment extends Fragment implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BaseViewModel mViewModel;
     BaseModule mRetainedModule;
@@ -105,11 +105,36 @@ public class BaseFragment extends Fragment implements BottomNavigationView.OnNav
     }
 
 
-    protected void displayFragment(@NonNull BaseModule baseModule) {
-        FragmentManager fragmentManager= getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container,baseModule.getFrag());
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+    protected void displayFragment(@NonNull BaseModule module) {
+        if (module.getFragment() == null) return;
+
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentByTag(module.getName());
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        fragmentManager.popBackStack();
+
+
+
+        if (mRetainedModule != null) {
+            Fragment detachFragment = fragmentManager.findFragmentByTag(mRetainedModule.getName());
+            if (detachFragment != null) {
+                transaction.detach(detachFragment);
+            }
+        }
+
+        if (fragment == null) {
+            fragment = Fragment.instantiate(getContext(), module.getFragment().getName());
+
+            transaction.add(R.id.container, fragment, module.getName());
+        } else {
+            transaction.attach(fragment);
+        }
+
+        transaction.commit();
+        fragmentManager.executePendingTransactions();
+
+        mRetainedModule = module;
     }
+
 }

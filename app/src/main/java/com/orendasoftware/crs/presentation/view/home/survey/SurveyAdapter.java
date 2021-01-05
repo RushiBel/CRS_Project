@@ -11,18 +11,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.orendasoftware.crs.R;
 import com.orendasoftware.crs.databinding.SurveyListItemBinding;
-import com.orendasoftware.crs.domain.data.model.Survey;
-import com.orendasoftware.crs.presentation.view_models.home.SurveyItemViewModel;
+import com.orendasoftware.crs.domain.data.model.SurveyRecord;
+import com.orendasoftware.crs.presentation.view_models.home.survey.SurveyItemViewModel;
 
 import java.util.List;
 
-public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.SurveyViewHolder>{
+public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.SurveyViewHolder> {
 
-    private List<Survey> surveyData;
+    private List<SurveyRecord> surveyRecordData;
+    public GetSurveyDataForEdit mGetSurveyDataEdit;
 
-    public SurveyAdapter(List<Survey> surveys) {
-        this.surveyData = surveys;
+    public SurveyAdapter(GetSurveyDataForEdit getSurveyDataForEdit, List<SurveyRecord> surveyRecords) {
+        mGetSurveyDataEdit = getSurveyDataForEdit;
+        this.surveyRecordData = surveyRecords;
         this.notifyDataSetChanged();
+    }
+
+    public interface GetSurveyDataForEdit {
+        void getEditSurveyData(Integer id);
     }
 
     @NonNull
@@ -30,18 +36,18 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.SurveyView
     public SurveyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.survey_list_item,
                 new FrameLayout(parent.getContext()), false);
-        return new SurveyViewHolder(itemView);
+        return new SurveyViewHolder(itemView, mGetSurveyDataEdit);
     }
 
     @Override
     public void onBindViewHolder(@NonNull SurveyViewHolder holder, int position) {
-        Survey survey = surveyData.get(position);
-        holder.setViewModel(new SurveyItemViewModel(survey));
+        SurveyRecord surveyRecord = surveyRecordData.get(position);
+        holder.setViewModel(new SurveyItemViewModel(surveyRecord));
     }
 
     @Override
     public int getItemCount() {
-        return this.surveyData.size();
+        return this.surveyRecordData.size();
     }
 
     @Override
@@ -56,16 +62,19 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.SurveyView
         holder.unbind();
     }
 
-    static class SurveyViewHolder extends RecyclerView.ViewHolder {
+
+    static class SurveyViewHolder extends RecyclerView.ViewHolder implements SurveyListItemClickListener{
 
         SurveyListItemBinding binding;
+        GetSurveyDataForEdit mSurveyDataEdit;
 
-        public SurveyViewHolder(@NonNull View itemView) {
+        public SurveyViewHolder(@NonNull View itemView, GetSurveyDataForEdit getSurveyDataForEdit) {
             super(itemView);
+            mSurveyDataEdit = getSurveyDataForEdit;
             bind();
         }
 
-        void bind() {
+        public void bind() {
             if(binding == null) {
                 binding = DataBindingUtil.bind(itemView);
             }
@@ -79,8 +88,14 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.SurveyView
 
         void setViewModel(SurveyItemViewModel surveyItemViewModel) {
             if(binding != null) {
+                binding.setListener(this);
                 binding.setSurveyViewModel(surveyItemViewModel);
             }
+        }
+
+        @Override
+        public void onItemClick(Integer id) {
+            mSurveyDataEdit.getEditSurveyData(id);
         }
     }
 }

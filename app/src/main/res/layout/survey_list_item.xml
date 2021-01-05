@@ -5,7 +5,12 @@
     <data>
         <variable
             name="surveyViewModel"
-            type="com.orendasoftware.crs.presentation.view_models.home.SurveyItemViewModel" />
+            type="com.orendasoftware.crs.presentation.view_models.home.survey.SurveyItemViewModel" />
+
+        <variable
+            name="listener"
+            type="com.orendasoftware.crs.presentation.view.home.survey.SurveyListItemClickListener" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -15,6 +20,7 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_5sdp"
+        android:onClick="@{()->listener.onItemClick(surveyViewModel.id)}"
         android:outlineAmbientShadowColor="@color/lightGrey">
 
         <RelativeLayout

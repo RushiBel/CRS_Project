@@ -1,39 +1,42 @@
 package com.orendasoftware.crs.presentation.view.home;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.orendasoftware.crs.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.orendasoftware.crs.databinding.HomeFragmentBinding;
+import com.orendasoftware.crs.domain.data.api_model.HomeResponse;
 import com.orendasoftware.crs.presentation.view_models.home.HomeViewModel;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel mViewModel;
-
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
-    }
+    private HomeFragmentBinding homeFragmentBinding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.home_fragment, container, false);
+        homeFragmentBinding = HomeFragmentBinding.inflate(inflater, container, false);
+        homeFragmentBinding.setLifecycleOwner(this);
+        mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        mViewModel.getHomeScreenData().observe(getViewLifecycleOwner(), this::setViewModel);
+        return homeFragmentBinding.getRoot();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-        // TODO: Use the ViewModel
+    public void setViewModel(HomeResponse homeResponse) {
+        mViewModel.setTodaysQuarantinedCount(String.valueOf(homeResponse.getTodaysQuarantinedCount()));
+        mViewModel.setTodaysSurveyCount(String.valueOf(homeResponse.getTodaysSurveyCount()));
+        mViewModel.setTodaysRelocationCount(String.valueOf(homeResponse.getTodaysRelocationCount()));
+        mViewModel.setTotalQuarantinedCount(String.valueOf(homeResponse.getTotalQuarantinedCount()));
+        mViewModel.setTotalSurveyCount(String.valueOf(homeResponse.getTotalSurveyCount()));
+        mViewModel.setTotalRelocationCount(String.valueOf(homeResponse.getTotalRelocationCount()));
+        homeFragmentBinding.setViewModel(mViewModel);
     }
 
 }

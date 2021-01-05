@@ -1,4 +1,4 @@
-package com.orendasoftware.crs.presentation.view.home.survey;
+package com.orendasoftware.crs.presentation.view_models.home.survey;
 
 import androidx.lifecycle.ViewModel;
 

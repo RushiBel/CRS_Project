@@ -37,10 +37,8 @@ public class SplashFragment extends Fragment {
                 if(!flag) {
                     flag = true;
                     Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_loginFragment);
-
                 }
                 getActivity().getFragmentManager().popBackStack();
-
             }
         };
         handler.postDelayed(callback, 2000);

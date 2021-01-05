@@ -11,4 +11,16 @@
     <color name="red">#FF0000</color>
     <color name="olivedrab">#6B8E23</color>
     <color name="textColorInverse">#fefefe</color>
+
+<!--    krishna-->
+    <color name="darkGray">#A9A9A9</color>
+    <color name="light_grey">#cccc</color>
+    <color name="grey">#DFDFDF</color>
+    <color name="black">#000000</color>
+    <color name="button_color">#169BD5</color>
+    <color name="purple">#A48AD4</color>
+
+
+    <color name="green">#008001</color>
+    <color name="orange">#FEA500</color>
 </resources>

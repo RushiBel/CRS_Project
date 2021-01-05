@@ -11,6 +11,5 @@ import retrofit2.http.POST;
 public interface EnrollmentAPI {
 
     @POST("login")
-    @Headers(NetworkConfig.HEADER_CONTENT_TYPE)
     SignInResponse getSignInData(@Body SignInRequest req);
 }

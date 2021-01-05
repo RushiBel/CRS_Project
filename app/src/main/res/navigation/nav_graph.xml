@@ -11,26 +11,26 @@
         android:label="login_fragment"
         tools:layout="@layout/login_fragment" >
 
-        <action
-            android:id="@+id/action_loginFragment_to_patientRegistrationFragment"
-            app:destination="@+id/patientRegistrationFragment"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/patientRegistrationFragment"
-        android:name="com.orendasoftware.crs.presentation.view.home.BaseFragment"
-        android:label="patient_registration_fragment"
-        tools:layout="@layout/base_fragment" />
 
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.orendasoftware.crs.presentation.view.home.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
 
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@+id/loginFragment"/>
     </fragment>
+
+
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="com.orendasoftware.crs.presentation.view.home.ReviewFragment"
+        android:label="review_fragment"
+        tools:layout="@layout/review_fragment" />
+
 
 </navigation>

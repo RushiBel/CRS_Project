@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 public class SignInRequest {
 
     @NonNull
-    @SerializedName("userId")
+    @SerializedName("userEmail")
     private String userId;
 
     @NonNull

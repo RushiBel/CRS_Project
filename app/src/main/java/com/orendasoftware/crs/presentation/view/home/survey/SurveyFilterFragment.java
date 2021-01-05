@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.orendasoftware.crs.R;
+import com.orendasoftware.crs.presentation.view_models.home.survey.SurveyFilterViewModel;
 
 public class SurveyFilterFragment extends Fragment {
 

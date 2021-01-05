@@ -1,6 +1,7 @@
 package com.orendasoftware.crs.domain.data.model;
 
-public class Survey {
+public class SurveyRecord {
+    Integer id;
     String name;
     String mobileNo;
     String travelHistory;
@@ -8,13 +9,18 @@ public class Survey {
     String symptoms;
     String date;
 
-    public Survey(String name, String mobileNo, String travelHistory, String age, String symptoms, String date) {
+    public SurveyRecord(Integer id, String name, String mobileNo, String travelHistory, String age, String symptoms, String date) {
+        this.id = id;
         this.name = name;
         this.mobileNo = mobileNo;
         this.travelHistory = travelHistory;
         this.age = age;
         this.symptoms= symptoms;
         this.date = date;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {

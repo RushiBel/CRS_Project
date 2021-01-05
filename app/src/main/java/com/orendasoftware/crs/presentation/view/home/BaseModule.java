@@ -4,6 +4,7 @@ import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
 import com.orendasoftware.crs.R;
+import com.orendasoftware.crs.presentation.view.home.quarantine.QuarantineFragment;
 import com.orendasoftware.crs.presentation.view.home.survey.SurveyFragment;
 
 public enum BaseModule {
